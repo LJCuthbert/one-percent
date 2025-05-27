@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import useUserSignUpStore from '@/hooks/useStore';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { Text, Surface, List, Switch, Button, Avatar } from 'react-native-paper';
 
@@ -22,13 +23,21 @@ const mockProfile: UserProfile = {
 export default function ProfileScreen() {
   const [profile, setProfile] = useState<UserProfile>(mockProfile);
 
+  const name = useUserSignUpStore((state) => state.name);
+
   const toggleSetting = (setting: keyof UserProfile) => {
     setProfile((prev) => ({
       ...prev,
       [setting]: !prev[setting],
     }));
   };
-
+  useEffect(() => {
+    setProfile((prev) => ({
+      ...prev,
+      name: name || prev.name, // Update name from store if available
+    }));
+  }
+  , [name]);
   return (
     <ScrollView style={styles.container}>
       <Surface style={styles.header}>

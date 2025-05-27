@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
-import { Text, TextInput } from 'react-native-paper';
-import { router } from 'expo-router';
-import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
-import Svg, { Path } from 'react-native-svg';
+import React, { useState } from "react";
+import { View, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
+import { Text, TextInput } from "react-native-paper";
+import { router } from "expo-router";
+import { useFonts, BebasNeue_400Regular } from "@expo-google-fonts/bebas-neue";
+import Svg, { Path } from "react-native-svg";
+import useUserSignUpStore from "@/hooks/useStore";
 
 export default function OnboardingName() {
-  const [name, setName] = useState('');
+  console.log("OnboardingName component rendered");
+  const name = useUserSignUpStore((state) => state.name);
+  const setName = useUserSignUpStore((state) => state.setName);
   const [fontsLoaded] = useFonts({
     BebasNeue_400Regular,
   });
@@ -17,13 +20,13 @@ export default function OnboardingName() {
 
   const handleNext = () => {
     if (name.trim()) {
-      router.push('/onboarding/goals');
+      router.push("/onboarding/goals");
     }
   };
 
   return (
-    <KeyboardAvoidingView 
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
       <View style={styles.content}>
@@ -44,9 +47,9 @@ export default function OnboardingName() {
 
         <TextInput
           value={name}
-          onChangeText={setName}
           style={styles.input}
-          placeholder="Timothy"
+          onChangeText={(text) => setName(text)}
+          placeholder="Enter Name..."
           placeholderTextColor="#ADB5BD"
           onSubmitEditing={handleNext}
           returnKeyType="next"
@@ -56,8 +59,8 @@ export default function OnboardingName() {
           activeUnderlineColor="#FFFFFF"
           theme={{
             colors: {
-              primary: '#FFFFFF',
-              text: '#FFFFFF',
+              primary: "#FFFFFF",
+              text: "#FFFFFF",
             },
           }}
         />
@@ -69,33 +72,33 @@ export default function OnboardingName() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#212529',
+    backgroundColor: "#212529",
   },
   content: {
     flex: 1,
     padding: 24,
-    justifyContent: 'flex-start',
+    justifyContent: "flex-start",
   },
   questionContainer: {
     marginTop: 60,
   },
   question: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 48,
-    fontFamily: 'BebasNeue_400Regular',
+    fontFamily: "BebasNeue_400Regular",
     lineHeight: 52,
   },
   input: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     fontSize: 24,
     marginTop: 20,
     height: 56,
   },
   curveContainer: {
-    position: 'absolute',
+    position: "absolute",
     right: 0,
-    bottom: '25%',
+    bottom: "25%",
     transform: [{ scale: 1.35 }],
     zIndex: -1,
   },
-}); 
+});

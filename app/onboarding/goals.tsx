@@ -4,8 +4,10 @@ import { Text, Button } from 'react-native-paper';
 import { router } from 'expo-router';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import Svg, { Path } from 'react-native-svg';
+import useUserSignUpStore from '@/hooks/useStore';
 
 export default function OnboardingGoals() {
+  const name = useUserSignUpStore((state) => state.name);
   const [fontsLoaded] = useFonts({
     BebasNeue_400Regular,
   });
@@ -40,6 +42,7 @@ export default function OnboardingGoals() {
         <View style={styles.buttonContainer}>
           <Button
             mode="contained"
+            dark={false}
             onPress={() => router.push('/onboarding/routine')}
             style={styles.button}
             labelStyle={styles.buttonLabel}
@@ -49,6 +52,7 @@ export default function OnboardingGoals() {
           </Button>
           <Button
             mode="text"
+            dark={true}
             onPress={() => router.push('/onboarding/routine')}
             style={styles.skipButton}
             labelStyle={styles.skipButtonLabel}
@@ -100,11 +104,10 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 50,
-    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
     height: 56,
   },
   buttonLabel: {
-    color: '#212529',
     fontSize: 16,
     fontWeight: 'bold',
     letterSpacing: 0.5,
@@ -113,7 +116,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   skipButtonLabel: {
-    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: 'bold',
     letterSpacing: 0.5,
