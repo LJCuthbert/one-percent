@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import { router } from 'expo-router';
-import Svg, { Path, Polygon } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 
 export default function SplashScreen() {

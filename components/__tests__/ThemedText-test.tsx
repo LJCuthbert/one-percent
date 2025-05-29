@@ -1,10 +1,15 @@
-import * as React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from "react";
 
-import { ThemedText } from '../ThemedText';
+import { ThemedText } from "../ThemedText";
+import { render } from "@testing-library/react";
 
-it(`renders correctly`, () => {
-  const tree = renderer.create(<ThemedText>Snapshot test!</ThemedText>).toJSON();
-
-  expect(tree).toMatchSnapshot();
+describe("ThemedText", () => {
+  it("renders correctly with default theme", () => {
+    const { getByText } = render(<ThemedText>Default Theme</ThemedText>);
+    const textElement = getByText("Default Theme");
+    expect(textElement).toBeTruthy();
+    const computedStyle = window.getComputedStyle(textElement);
+    expect(computedStyle.color).toBe("rgb(0, 0, 0)"); // Assuming default text color is black
+  });
 });
+

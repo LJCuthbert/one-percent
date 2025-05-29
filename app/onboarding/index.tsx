@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
 import { Text, TextInput } from "react-native-paper";
 import { router } from "expo-router";
@@ -31,7 +31,7 @@ export default function OnboardingName() {
     >
       <View style={styles.content}>
         <View style={styles.questionContainer}>
-          <Text style={styles.question}>WHAT'S YOUR NAME?</Text>
+          <Text style={styles.question}>WHAT&apos;S YOUR NAME?</Text>
         </View>
 
         <View style={styles.curveContainer}>

@@ -4,7 +4,7 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
 export default function TabLayout() {
   const theme = useTheme();
-
+  console.log(theme.colors.primary)
   return (
     <Tabs
       screenOptions={{

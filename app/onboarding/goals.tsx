@@ -4,10 +4,8 @@ import { Text, Button } from 'react-native-paper';
 import { router } from 'expo-router';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import Svg, { Path } from 'react-native-svg';
-import useUserSignUpStore from '@/hooks/useStore';
 
 export default function OnboardingGoals() {
-  const name = useUserSignUpStore((state) => state.name);
   const [fontsLoaded] = useFonts({
     BebasNeue_400Regular,
   });
@@ -24,7 +22,7 @@ export default function OnboardingGoals() {
           <Text style={styles.question}>GETTING UP YOUR</Text>
           <Text style={styles.question}>GOALS AND HABITS?</Text>
           <Text style={styles.subtitle}>BASED ON YOUR LIFESTYLE,</Text>
-          <Text style={styles.subtitle}>WE'LL CREATE A PLAN TO</Text>
+          <Text style={styles.subtitle}>WE&apos;LL CREATE A PLAN TO</Text>
           <Text style={styles.subtitle}>HELP YOU GET STARTED</Text>
         </View>
 
